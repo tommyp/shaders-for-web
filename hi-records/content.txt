@@ -1,0 +1,47 @@
+Links:
+https://hi-records.superhi.com/
+http://collletttivo.it/
+https://alumni.media.mit.edu/~bwhitman/10000.html
+https://zora.co/manifesto
+
+Typography
+Titles: Halibut
+Body: Apfel Grotezk
+
+Colors:
+
+Black: #000000
+White: #ffffff
+Grey:  #58585d
+
+Record 1
+Inner: 0.977, 0.989, 0.641
+Mid:   1.000, 0.713, 0.216
+Outer: 1.000, 0.245, 0.226
+
+Record 2
+Inner: 0.773, 0.711, 1.000
+Mid:   0.730, 0.901, 0.201
+Outer: 0.071, 0.557, 0.300
+
+Record 3
+Inner: 0.963, 0.649, 0.646
+Mid:   0.533, 0.941, 1.000
+Outer: 0.000, 0.206, 0.758
+
+Content:
+
+SUP006
+Pharmacy Sayings
+A Picture Of A Stranger
+Vinyl / Download
+
+SUP005
+Various Artists
+Songs of Love and Death
+Vinyl / CD / Download
+
+SUP004
+Favorite Hunks
+Sound Of Daylight
+Sold out
