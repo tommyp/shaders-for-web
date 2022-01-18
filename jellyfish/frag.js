@@ -23,9 +23,19 @@ const frag = `
     float diffuseScore = max(dot(lightDirection, v_normal), 0.0);
     vec3 diffuseColor = diffuseStrength * diffuseScore * lightColor;
 
+    // specular color - gloss
+    vec3 cameraDirection = normalize(cameraPosition - v_position);
+    vec3 reflectionDirection = normalize(lightDirection + cameraDirection);
+    float specularStrength = 0.5;
+    float shininess = 6.0;
+    float specularScore = pow(max(dot(reflectionDirection, v_normal), 0.0), shininess);
+    vec3 specularColor = specularStrength * specularScore * lightColor;
 
+  
     // final color
-    vec4 color = vec4((ambientColor + diffuseColor) * objectColor, 1.0);
+    vec4 color = vec4(
+      (ambientColor + diffuseColor + specularColor) * objectColor
+      , 1.0);
 
     gl_FragColor = color;
   }
