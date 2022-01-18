@@ -1,0 +1,19 @@
+Links:
+https://jellyfish.superhi.com/
+https://www.humus.name/index.php?page=Textures
+https://www.humus.name/index.php?page=Textures&ID=100
+https://unsplash.com/photos/IuJc2qh2TcA
+https://learnopengl.com/Introduction
+
+Three.js links:
+https://threejs.org/
+https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene
+https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer
+https://threejs.org/docs/index.html#api/en/geometries/SphereGeometry
+https://threejs.org/docs/index.html#api/en/geometries/TorusKnotGeometry
+https://threejs.org/docs/index.html#api/en/renderers/webgl/WebGLProgram
+https://threejs.org/docs/index.html#api/en/core/Clock
+https://threejs.org/docs/index.html#api/en/loaders/TextureLoader
+https://threejs.org/docs/index.html#api/en/textures/CubeTexture
+https://threejs.org/docs/index.html#api/en/cameras/Camera
+https://threejs.org/docs/index.html#api/en/math/Vector3
