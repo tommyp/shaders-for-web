@@ -3,6 +3,7 @@ const frag = `
 
   uniform float time;
   uniform sampler2D cat;
+  uniform samplerCube cube;
 
   varying vec3 v_position;
   varying vec3 v_normal;
@@ -31,7 +32,7 @@ const frag = `
   }
 
   void main() {
-    vec3 objectColor = vec3(0.5, 0.5, 0.5);
+    vec4 objectColor = mix(vec4(0.5, 0.5, 0.5, 1.0), textureCube(cube, v_normal), 0.5);
 
     vec3 light1 = addLight(
       vec3(1.0, 1.0, 1.0),
@@ -41,7 +42,7 @@ const frag = `
     
   
     // final color
-    vec4 color = vec4(light1 * objectColor, 1.0);
+    vec4 color = vec4(light1 * objectColor.rgb, 1.0);
 
     gl_FragColor = color;
   }

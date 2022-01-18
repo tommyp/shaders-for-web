@@ -19,12 +19,24 @@ sectionTag.appendChild(renderer.domElement);
 const clock = new THREE.Clock();
 const texture = new THREE.TextureLoader().load('./assets/cat.jpg');
 
+const cubeLoader = new THREE.CubeTextureLoader();
+
 const uniforms = {
   time: {
     value: clock.getElapsedTime(),
   },
   cat: {
     value: texture,
+  },
+  cube: {
+    value: cubeLoader.load([
+      './assets/posx.jpg',
+      './assets/negx.jpg',
+      './assets/posy.jpg',
+      './assets/negy.jpg',
+      './assets/posz.jpg',
+      './assets/negz.jpg',
+    ]),
   },
 };
 
