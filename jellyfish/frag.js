@@ -22,7 +22,7 @@ const frag = `
     // specular color - gloss
     vec3 cameraDirection = normalize(cameraPosition - v_position);
     vec3 reflectionDirection = normalize(lightDirection + cameraDirection);
-    float specularStrength = 1.0;
+    float specularStrength = 0.4;
     float shininess = 128.0;
     float specularScore = pow(max(dot(reflectionDirection, v_normal), 0.0), shininess);
     vec3 specularColor = specularStrength * specularScore * lightColor;
@@ -31,20 +31,17 @@ const frag = `
   }
 
   void main() {
-    vec3 objectColor = vec3(0.9, 0.4, 0.4);
+    vec3 objectColor = vec3(0.5, 0.5, 0.5);
 
     vec3 light1 = addLight(
-      vec3(0.1, 0.1, 1.0),
-      vec3(0.0, 100.0 * sin(time * 2.0), 30.0)
+      vec3(1.0, 1.0, 1.0),
+      vec3(60.0 * cos(time), 60.0 * sin(time), 60.0)
     );
 
-    vec3 light2 = addLight(
-      vec3(0.5, 0.1, 0.5),
-      vec3(100.0 * sin(time), 0.0, 30.0)
-    );
+    
   
     // final color
-    vec4 color = vec4((light1 + light2) * objectColor, 1.0);
+    vec4 color = vec4(light1 * objectColor, 1.0);
 
     gl_FragColor = color;
   }
