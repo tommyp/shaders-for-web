@@ -35,7 +35,17 @@ const frag = `
     vec3 dir = reflect(v_normal, vec3(0.0, 1.0, 0.0));
     dir = reflect(dir, vec3(1.0, 0.0, 0.0));
 
-    vec4 objectColor = mix(vec4(0.5, 0.5, 0.5, 1.0), textureCube(cube, dir), 0.5);
+    vec3 cameraDirection = normalize(cameraPosition - v_position);
+
+    vec3 rr = refract(cameraDirection, v_normal, 0.6);
+    vec3 rg = refract(cameraDirection, v_normal, 0.7);
+    vec3 rb = refract(cameraDirection, v_normal, 0.8);
+
+    vec4 rSample = textureCube(cube, rr);
+    vec4 gSample = textureCube(cube, rg);
+    vec4 bSample = textureCube(cube, rb);
+
+    vec4 objectColor = vec4(rSample.r, gSample.g, bSample.b, 1.0);
 
     vec3 light1 = addLight(
       vec3(1.0, 1.0, 1.0),
