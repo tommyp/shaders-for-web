@@ -1,0 +1,10 @@
+Links:
+https://cryptoquartz.superhi.com/
+
+Typography:
+Necto from http://collletttivo.it/
+
+Colors:
+Background: #f8f8f8
+White: #ffffff
+Black: #000000

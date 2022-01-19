@@ -1,0 +1,79 @@
+@font-face {
+  font-family: Necto Mono;
+  src: url(necto-mono.woff2);
+}
+
+body {
+	font-family: Necto Mono;
+	font-size: 16px;
+	line-height: 1.25;
+	
+	background-color: #f8f8f8;
+	color: #000000;
+}
+
+main {
+  display: grid;
+  min-height: 100vh;
+  
+  grid-template-columns: 1fr 320px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "display logo" "display form" "display save";
+}
+
+header {
+  grid-area: logo;
+}
+
+form {
+  grid-area: form;
+}
+
+section {
+  grid-area: display;
+}
+
+div.save {
+  grid-area: save;
+}
+
+header, form, div.save {
+  background-color: #ffffff;
+  padding: 24px;
+}
+
+h1 {
+	font-size: 32px;
+}
+
+form div {
+  margin: 0 0 16px 0;
+}
+
+form label {
+  display: block;
+  margin: 0 0 4px 0;
+}
+
+form input {
+  width: 100%;
+}
+
+section canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+button {
+  margin-bottom: 50px;
+  display: block;
+  width: 100%;
+  appearance: none;
+  padding: 16px 24px 16px 24px;
+  font-family: Necto Mono;
+  font-size: 24px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
