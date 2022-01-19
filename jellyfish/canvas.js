@@ -73,3 +73,9 @@ const animate = function () {
   renderer.render(scene, camera);
 };
 animate();
+
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspectRatio = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
