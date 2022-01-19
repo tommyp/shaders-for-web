@@ -1,4 +1,8 @@
 body {
   margin: 0 auto;
-  background: #924e3a;
+  background: #000;
+  background-image: url('./assets/header.svg'), url('./assets/footer.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top left, bottom right;
 }
