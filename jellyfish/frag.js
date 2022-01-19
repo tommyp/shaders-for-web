@@ -37,9 +37,17 @@ const frag = `
 
     vec3 cameraDirection = normalize(cameraPosition - v_position);
 
-    vec3 rr = refract(cameraDirection, v_normal, 0.6);
-    vec3 rg = refract(cameraDirection, v_normal, 0.7);
-    vec3 rb = refract(cameraDirection, v_normal, 0.8);
+    vec3 wind = vec3(
+      mix(-2.5, 2.5, fbm(0.1 * v_position + 0.1 * time)),
+      mix(-2.5, 2.5, fbm(0.2 * v_position + 0.1 * time)),
+      mix(-2.5, 2.5, fbm(0.3 * v_position + 0.1 * time))
+    );
+
+    float thickness = mix(-0.5, 0.5, fbm(0.1 * v_position + wind));
+
+    vec3 rr = refract(cameraDirection, v_normal, 0.6 + thickness);
+    vec3 rg = refract(cameraDirection, v_normal, 0.7 + thickness);
+    vec3 rb = refract(cameraDirection, v_normal, 0.8 + thickness);
 
     vec4 rSample = textureCube(cube, rr);
     vec4 gSample = textureCube(cube, rg);
