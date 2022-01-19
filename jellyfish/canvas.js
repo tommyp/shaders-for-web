@@ -53,10 +53,20 @@ const material = new THREE.ShaderMaterial({
 const shape = new THREE.Mesh(geometry, material);
 scene.add(shape);
 
-camera.position.z = 35;
+let aimCamera = new THREE.Vector3(0, 0, 35);
+let currentCamera = new THREE.Vector3(0, 200, 100);
+
+camera.position.copy(currentCamera);
 
 const animate = function () {
   requestAnimationFrame(animate);
+
+  // camera zoom
+  const diff = aimCamera.clone().sub(currentCamera).multiplyScalar(0.02);
+
+  currentCamera.add(diff);
+
+  camera.position.copy(currentCamera);
 
   // update uniforms
   uniforms.time = { value: clock.getElapsedTime() };
