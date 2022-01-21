@@ -22,13 +22,12 @@ const uniforms = {
   seed: { value: Math.random() },
 };
 
-const dpi = 10;
+const dpi = 100;
 const geometry = new THREE.SphereGeometry(3, 2 * dpi, dpi);
 const material = new THREE.ShaderMaterial({
   uniforms,
   vertexShader: vert,
   fragmentShader: frag,
-  wireframe: true,
 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);

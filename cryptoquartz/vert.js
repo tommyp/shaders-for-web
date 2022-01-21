@@ -6,6 +6,11 @@ const vert = `
   uniform float roundness;
   uniform float roughness;
 
+  varying vec3 v_position;
+  varying vec3 v_normal;
+  varying vec2 v_uv;
+  varying float v_radius;
+
   void main() {
     vec3 newPosition = position;
 
@@ -20,5 +25,10 @@ const vert = `
     newPosition *= radius;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0 );
+
+    v_position = newPosition;
+    v_normal = normal;
+    v_uv = uv;
+    v_radius = radius;
   }
 `;

@@ -41,8 +41,8 @@ const uniforms = {
 };
 
 const dpi = 32;
-// const geometry = new THREE.SphereGeometry(12, dpi, dpi);
-const geometry = new THREE.TorusKnotGeometry(8, 1, 10 * dpi, dpi, 5, 9);
+const geometry = new THREE.SphereGeometry(12, dpi, dpi);
+// const geometry = new THREE.TorusKnotGeometry(8, 1, 10 * dpi, dpi, 5, 9);
 
 // const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const material = new THREE.ShaderMaterial({
