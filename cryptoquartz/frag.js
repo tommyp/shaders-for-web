@@ -15,13 +15,20 @@ const frag = `
   };
 
   vec3 addLight(Light l) {
+    // get the surface direction
+    vec3 dx = dFdx(v_position);
+    vec3 dy = dFdy(v_position);
+    
+    // get a new arrow pointing away from the surface
+    vec3 newNormal = normalize(cross(dx, dy));
+
     //ambient color
     float ambientStrength = 0.7;
     vec3 ambientColor = ambientStrength * l.color;
 
     // diffuse color
     vec3 L = normalize(l.position - v_position);
-    float diffuseScore = max(dot(L, v_normal), 0.0);
+    float diffuseScore = max(dot(L, newNormal), 0.0);
     vec3 diffuseColor = diffuseScore * l.color;
 
     return ambientColor + diffuseColor;
