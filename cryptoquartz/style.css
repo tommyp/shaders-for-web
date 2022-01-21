@@ -44,3 +44,16 @@ div.save {
   background-color: #fff;
   padding: 24px;
 }
+
+form div {
+  margin: 0 0 16px;
+}
+
+form label {
+  display: block;
+  margin: 0 0 4px 0;
+}
+
+form input {
+  width: 100%;
+}

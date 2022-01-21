@@ -5,6 +5,7 @@ const vert = `
   uniform float seed;
   uniform float roundness;
   uniform float roughness;
+  uniform float lightStrength;
 
   varying vec3 v_position;
   varying vec3 v_normal;
