@@ -22,7 +22,7 @@ const uniforms = {
   seed: { value: Math.random() },
 };
 
-const dpi = 100;
+const dpi = 1000;
 const geometry = new THREE.SphereGeometry(3, 2 * dpi, dpi);
 const material = new THREE.ShaderMaterial({
   uniforms,

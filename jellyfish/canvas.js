@@ -40,7 +40,7 @@ const uniforms = {
   },
 };
 
-const dpi = 32;
+const dpi = 100;
 const geometry = new THREE.SphereGeometry(12, dpi, dpi);
 // const geometry = new THREE.TorusKnotGeometry(8, 1, 10 * dpi, dpi, 5, 9);
 
