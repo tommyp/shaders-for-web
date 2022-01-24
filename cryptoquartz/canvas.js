@@ -55,4 +55,10 @@ sliders.forEach((slider) => {
   });
 });
 
+window.addEventListener('resize', () => {
+  camera.aspect = section.clientWidth / section.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(section.clientWidth, section.clientHeight);
+});
+
 animate();

@@ -25,7 +25,7 @@ const vert = `
     radius *= mix(1.0 - roughness, 1.0 + roughness, noise2);
 
     newPosition *= radius;
-    mat3 rotation = rotation3dY(time);
+    mat3 rotation = rotation3dY(time * 0.2);
 
     newPosition *= rotation;
 

@@ -36,7 +36,7 @@ const frag = `
     vec3 N = mix(v_normal, newNormal, 0.1);
 
     //ambient color
-    float ambientStrength = 0.7;
+    float ambientStrength = 0.9;
     vec3 ambientColor = ambientStrength * l.color;
 
     // diffuse color
