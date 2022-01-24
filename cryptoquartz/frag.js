@@ -3,11 +3,16 @@ const frag = `
 
   uniform float time;
   uniform float lightStrength;
+  uniform float saturation;
+  uniform float brightness;
+  uniform float gradientMix;
+  uniform float seed;
 
   varying vec3 v_position;
   varying vec3 v_normal;
   varying vec2 v_uv;
   varying float v_radius;
+  varying mat3 v_rotation;
 
   struct Light {
     vec3 position;
@@ -44,27 +49,27 @@ const frag = `
 
   float createNoise(float level) {
     vec3 wind = vec3(
-      fbm(v_position + time * 0.1),
-      fbm(v_position - time * 0.2),
-      fbm(v_position + time * 0.3)
+      fbm(v_position * inverse(v_rotation) * level + time * 0.1 + seed),
+      fbm(v_position * inverse(v_rotation) * level - time * 0.2 - seed),
+      fbm(v_position * inverse(v_rotation) * level + time * 0.3 + seed)
     );
-    return fbm(v_position + wind * level);
+    return fbm(v_position * inverse(v_rotation) + wind * level + seed);
   }
 
   vec3 createColor(Hue h) {
-    vec3 hsv1 = vec3(h.s + h.speed * time, 1.0, 1.0);
-    vec3 hsv2 = vec3(h.e + h.speed * time, 1.0, 1.0);
+    vec3 hsv1 = vec3(h.s + h.speed * time + seed, saturation, brightness);
+    vec3 hsv2 = vec3(h.e + h.speed * time + seed, saturation, brightness);
     vec3 rgb1 = hsv2rgb(hsv1);
     vec3 rgb2 = hsv2rgb(hsv2);
 
-    float n = createNoise(2.2);
+    float n = createNoise(gradientMix);
 
     return mix(rgb1, rgb2, n);
   }
 
   void main() {
     Light l = Light(
-      vec3(0.0, 0.0, 5.0),
+      vec3(0.0, 0.0, 5.0) * inverse(v_rotation),
       vec3(lightStrength)
     );
 
@@ -76,10 +81,11 @@ const frag = `
     vec3 color2 = createColor(h2);
     vec3 color3 = createColor(h3);
 
-    float n = createNoise(1.1);
+    float mixer1 = smoothstep(0.35, 0.65, createNoise(gradientMix - 0.05));
+    float mixer2 = smoothstep(0.35, 0.65, createNoise(gradientMix + 0.05));
 
-    vec3 objectColor = mix(color1, color2, n);
-    objectColor = mix(objectColor, color3, n);
+    vec3 objectColor = mix(color1, color2, mixer1);
+    objectColor = mix(objectColor, color3, mixer2);
 
     vec3 rgb = addLight(l) * objectColor;
     gl_FragColor = vec4(rgb, 1.0);

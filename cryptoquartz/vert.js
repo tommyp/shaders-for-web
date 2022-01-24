@@ -11,6 +11,7 @@ const vert = `
   varying vec3 v_normal;
   varying vec2 v_uv;
   varying float v_radius;
+  varying mat3 v_rotation;
 
   void main() {
     vec3 newPosition = position;
@@ -24,9 +25,13 @@ const vert = `
     radius *= mix(1.0 - roughness, 1.0 + roughness, noise2);
 
     newPosition *= radius;
+    mat3 rotation = rotation3dY(time);
+
+    newPosition *= rotation;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0 );
 
+    v_rotation = rotation;
     v_position = newPosition;
     v_normal = normal;
     v_uv = uv;

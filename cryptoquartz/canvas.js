@@ -22,15 +22,15 @@ const uniforms = {
   seed: { value: Math.random() },
 };
 
-const dpi = 1000;
+const dpi = 100;
 const geometry = new THREE.SphereGeometry(3, 2 * dpi, dpi);
 const material = new THREE.ShaderMaterial({
   uniforms,
   vertexShader: vert,
   fragmentShader: frag,
 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+const shape = new THREE.Mesh(geometry, material);
+scene.add(shape);
 
 camera.position.z = 10;
 
