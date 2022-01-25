@@ -7,6 +7,7 @@ const frag = `
   uniform float brightness;
   uniform float gradientMix;
   uniform float seed;
+  uniform vec2 mouse;
 
   varying vec3 v_position;
   varying vec3 v_normal;
@@ -69,7 +70,7 @@ const frag = `
 
   void main() {
     Light l = Light(
-      vec3(0.0, 0.0, 5.0) * inverse(v_rotation),
+      vec3(mouse.x * 5.0, mouse.y * 5.0, 5.0) * inverse(v_rotation),
       vec3(lightStrength)
     );
 

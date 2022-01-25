@@ -17,10 +17,12 @@ renderer.setSize(section.clientWidth, section.clientHeight);
 section.appendChild(renderer.domElement);
 
 const clock = new THREE.Clock();
+const mouse = new THREE.Vector2(0, 0);
 
 const uniforms = {
   time: { value: clock.getElapsedTime() },
   seed: { value: Math.random() },
+  mouse: { value: mouse },
 };
 
 const dpi = 100;
@@ -37,6 +39,7 @@ camera.position.z = 10;
 
 function animate() {
   uniforms.time = { value: clock.getElapsedTime() };
+  uniforms.mouse = { value: mouse };
   requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
@@ -74,6 +77,16 @@ button.addEventListener('click', (e) => {
   link.setAttribute('target', '_blank');
   link.setAttribute('download', 'rock');
   link.click();
+});
+
+section.addEventListener('mousemove', (event) => {
+  mouse.x = (event.clientX / section.clientWidth) * 2 - 1;
+  mouse.y = -(event.clientY / section.clientHeight) * 2 + 1;
+});
+
+section.addEventListener('mouseleave', (event) => {
+  mouse.x = 0;
+  mouse.y = 0;
 });
 
 animate();
