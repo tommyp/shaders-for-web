@@ -1,0 +1,67 @@
+:root {
+  --background: #fff;
+  --highlight: #ab2a2c;
+}
+
+@font-face {
+  font-family: 'Porpora';
+  src: url(./assets/porpora-regular.woff2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Porpora';
+  font-size: 24px;
+  line-height: 1;
+  margin: 0 auto;
+  background-color: var(--background);
+  background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.25));
+  color: var(--highlight);
+  height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+div.description,
+nav a {
+  padding: 8px 12px;
+  text-align: center;
+
+  background-color: var(--highlight);
+  color: var(--background);
+
+  margin: 0 0 2px 0;
+
+  border: 2px solid var(--highlight);
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  flex: 1;
+  margin: 0 2px 0 0;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav a:last-child {
+  margin: 0;
+}
+
+nav a:hover {
+  background-color: transparent;
+  color: var(--highlight);
+}
