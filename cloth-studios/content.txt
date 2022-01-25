@@ -1,0 +1,24 @@
+Links:
+https://cloth-studios.superhi.com
+http://collletttivo.it/
+
+Original textures:
+https://www.si.edu/search/collection-images?edan_q=textile&oa=1&edan_fq%5B0%5D=media_usage%3ACC0
+
+Content:
+Left arrow: &#8592;
+Right arrow: &#8594;
+
+Colors:
+
+Slides 1 + 2
+Background #ffffff
+Highlight #ab2a2c
+
+Slide 3
+Background #d7d7be
+Highlight #000000
+
+Slides 4 + 5
+Background #222222
+Highlight #ffffff
