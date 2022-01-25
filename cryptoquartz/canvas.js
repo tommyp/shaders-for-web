@@ -11,6 +11,7 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
   alpha: true,
+  preserveDrawingBuffer: true,
 });
 renderer.setSize(section.clientWidth, section.clientHeight);
 section.appendChild(renderer.domElement);
@@ -59,6 +60,20 @@ window.addEventListener('resize', () => {
   camera.aspect = section.clientWidth / section.clientHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(section.clientWidth, section.clientHeight);
+});
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const canvas = document.querySelector('canvas');
+  const url = canvas.toDataURL();
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('target', '_blank');
+  link.setAttribute('download', 'rock');
+  link.click();
 });
 
 animate();
