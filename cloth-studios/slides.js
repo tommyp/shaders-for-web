@@ -50,6 +50,8 @@ renderer.setSize(section.clientWidth, section.clientHeight);
 section.appendChild(renderer.domElement);
 
 let current = 0;
+let currentRotationY = 0;
+let aimRotationY = 0;
 
 const arc = (Math.PI * 2) / cloths.length;
 console.log(arc);
@@ -71,10 +73,12 @@ cloths.forEach((cloth, index) => {
 
 const next = () => {
   current + 1 > cloths.length - 1 ? (current = 0) : (current += 1);
+  aimRotationY -= arc;
 };
 
 const prev = () => {
   current - 1 < 0 ? (current = cloths.length - 1) : (current -= 1);
+  aimRotationY += arc;
 };
 
 const update = function () {
@@ -86,6 +90,10 @@ const update = function () {
 };
 
 function animate() {
+  const diffY = (aimRotationY - currentRotationY) * 0.025;
+  currentRotationY += diffY;
+  camera.rotation.y = currentRotationY;
+
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
