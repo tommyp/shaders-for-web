@@ -15,11 +15,16 @@ const frag = `
   };
 
   vec3 addLight(Light l) {
+    // calculate the new normals
+    vec3 dx = dFdx(v_position);
+    vec3 dy = dFdy(v_position);
+    vec3 newNormal = normalize(cross(dx, dy));
+
     // light direction
     vec3 L = normalize(l.position - v_position);
     
     // surface direction
-    vec3 N = normalize(v_normal);
+    vec3 N = mix(v_normal, newNormal, 0.25);
 
     // ambient light
     float ambientScore = 0.1;
@@ -36,7 +41,7 @@ const frag = `
     vec4 objectColor = texture2D(image, v_uv);
 
     Light l = Light(
-      vec3(5.0 * sin(time), 0.0, 1.0),
+      vec3(0.0, 0.0, 10.0),
       vec3(1.0, 1.0, 1.0)
     );
 
