@@ -53,6 +53,9 @@ let current = 0;
 let currentRotationY = 0;
 let aimRotationY = 0;
 
+// setup tools
+const loader = new THREE.TextureLoader();
+
 const arc = (Math.PI * 2) / cloths.length;
 console.log(arc);
 
@@ -60,7 +63,9 @@ console.log(arc);
 
 cloths.forEach((cloth, index) => {
   const geometry = new THREE.PlaneGeometry(4, 6);
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const material = new THREE.MeshBasicMaterial({
+    map: loader.load(`./assets/${cloth.src}`),
+  });
   const shape = new THREE.Mesh(geometry, material);
   const group = new THREE.Group();
   group.rotation.set(0, index * arc, 0);
