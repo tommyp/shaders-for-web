@@ -57,14 +57,19 @@ let aimRotationY = 0;
 const loader = new THREE.TextureLoader();
 
 const arc = (Math.PI * 2) / cloths.length;
-console.log(arc);
 
 // loop over all of the clothes
 
 cloths.forEach((cloth, index) => {
+  cloth.uniforms = {
+    image: { value: loader.load(`./assets/${cloth.src}`) },
+  };
+
   const geometry = new THREE.PlaneGeometry(4, 6);
-  const material = new THREE.MeshBasicMaterial({
-    map: loader.load(`./assets/${cloth.src}`),
+  const material = new THREE.ShaderMaterial({
+    uniforms: cloth.uniforms,
+    vertexShader: vert,
+    fragmentShader: frag,
   });
   const shape = new THREE.Mesh(geometry, material);
   const group = new THREE.Group();
