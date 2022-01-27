@@ -51,12 +51,23 @@ section.appendChild(renderer.domElement);
 
 let current = 0;
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+const arc = (Math.PI * 2) / cloths.length;
+console.log(arc);
 
-camera.position.z = 5;
+// loop over all of the clothes
+
+cloths.forEach((cloth, index) => {
+  const geometry = new THREE.PlaneGeometry(4, 6);
+  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const shape = new THREE.Mesh(geometry, material);
+  const group = new THREE.Group();
+  group.rotation.set(0, index * arc, 0);
+
+  shape.position.set(0, 0, -10);
+
+  group.add(shape);
+  scene.add(group);
+});
 
 const next = () => {
   current + 1 > cloths.length - 1 ? (current = 0) : (current += 1);
