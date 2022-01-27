@@ -55,6 +55,7 @@ let aimRotationY = 0;
 
 // setup tools
 const loader = new THREE.TextureLoader();
+const clock = new THREE.Clock();
 
 const arc = (Math.PI * 2) / cloths.length;
 
@@ -63,9 +64,12 @@ const arc = (Math.PI * 2) / cloths.length;
 cloths.forEach((cloth, index) => {
   cloth.uniforms = {
     image: { value: loader.load(`./assets/${cloth.src}`) },
+    time: { value: clock.getElapsedTime() },
   };
 
-  const geometry = new THREE.PlaneGeometry(4, 6);
+  const dpi = 100;
+
+  const geometry = new THREE.PlaneGeometry(4, 6, dpi, dpi * 1.5);
   const material = new THREE.ShaderMaterial({
     uniforms: cloth.uniforms,
     vertexShader: vert,
@@ -99,14 +103,18 @@ const update = function () {
   body.className = cloth.theme;
 };
 
-function animate() {
+const animate = () => {
   const diffY = (aimRotationY - currentRotationY) * 0.025;
   currentRotationY += diffY;
   camera.rotation.y = currentRotationY;
 
+  cloths.forEach((cloth) => {
+    cloth.uniforms.time = { value: clock.getElapsedTime() };
+  });
+
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
-}
+};
 animate();
 update();
 
