@@ -2,6 +2,8 @@ const vert = `
   varying vec3 v_position;
   varying vec2 v_uv;
 
+  uniform float time;
+
   ${includes}
 
   void main () {
