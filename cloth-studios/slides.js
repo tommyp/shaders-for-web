@@ -169,3 +169,9 @@ function onMouseMove(event) {
 }
 
 window.addEventListener('mousemove', onMouseMove);
+
+window.addEventListener('resize', function () {
+  camera.aspect = section.clientWidth / section.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(section.clientWidth, section.clientHeight);
+});
