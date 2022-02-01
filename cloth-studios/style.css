@@ -3,6 +3,15 @@
   --highlight: #ab2a2c;
 }
 
+@keyframes startanim {
+  0% {
+    transform: translate(-101%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 @font-face {
   font-family: 'Porpora';
   src: url(./assets/porpora-regular.woff2);
@@ -41,6 +50,7 @@ header {
   left: 24px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 h1,
@@ -86,4 +96,16 @@ section {
 
 section img {
   max-height: 75vh;
+}
+
+h1 {
+  animation: startanim 1s 1.5s both;
+}
+
+div.description {
+  animation: startanim 1.25s 1.75s both;
+}
+
+nav {
+  animation: startanim 1.5s 2s both;
 }
