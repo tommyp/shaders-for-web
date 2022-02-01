@@ -1,0 +1,38 @@
+// for Javascript dragging an image into
+// your project
+
+// stop any default drag events
+const nonEvents = ["dragenter", "dragover", "dragleave"]
+nonEvents.forEach(t => {
+  document.addEventListener(t, function(e) {
+    e.stopPropagation()
+    e.preventDefault()
+  })
+})
+
+// on drop
+document.addEventListener('drop', function (event) {
+  // stop defaults from happening
+  event.stopPropagation()
+  event.preventDefault()
+  
+	// create a new file reader object
+  let reader = new FileReader()
+
+	// get all the files dropped so far
+  let files = event.dataTransfer.files
+
+	// read the last file added
+  reader.readAsDataURL(files[files.length - 1])
+
+  // once loaded
+  reader.onloadend = function() {
+		// here's where you would update your uniforms
+    // using reader.result as the file to pass
+		// in – you will also need to load it
+		// as a texture using THREE.TextureLoader!
+	
+		// replace with real code
+		console.log(reader.result)
+  }  
+})
