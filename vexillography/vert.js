@@ -16,7 +16,11 @@ const vert = `
 
     vec3 newPosition = position;
     
-    newPosition.z += mix(-2.0, 2.0, fbm(wind)) * uv.x;
+    newPosition.z += mix(-1.5, 1.5, fbm(wind)) * uv.x;
+
+    newPosition *= rotation3dX(0.1 * sin(time));
+    newPosition *= rotation3dY(0.05 * cos(time));
+    newPosition *= rotation3dZ(0.1);
     
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 
