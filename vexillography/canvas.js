@@ -11,10 +11,14 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 const clock = new THREE.Clock();
+const loader = new THREE.TextureLoader();
 
 const uniforms = {
   time: {
     value: clock.getElapsedTime(),
+  },
+  flag: {
+    value: loader.load('./assets/StarryPlough.png'),
   },
 };
 

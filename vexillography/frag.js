@@ -3,10 +3,12 @@ const frag = `
   varying vec2 v_uv;
 
   uniform float time;
+  uniform sampler2D flag;
 
   ${includes}
   
   void main() {
-    gl_FragColor = vec4(v_uv.x + sin(time), 0.5, v_uv.y + cos(time), 1.0);
+    vec4 color = texture(flag, v_uv);
+    gl_FragColor = color;
   }
 `;
