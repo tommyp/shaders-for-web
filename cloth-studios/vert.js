@@ -6,6 +6,8 @@ const vert = `
   varying vec3 v_wind;
 
   uniform float time;
+  uniform vec2 touchUv;
+  uniform float touchStrength;
 
   ${includes}
 
@@ -28,6 +30,14 @@ const vert = `
 
     newPosition.y += gravity;
     newPosition.z += tension * wave;
+
+    // how far away is the mouse
+    float mouseDistance = distance(touchUv, uv);
+    float mouseScore = smoothstep(0.5, 0.0, mouseDistance);
+
+    // push backwards
+    newPosition.z += mix(0.0, -6.0 * touchStrength, tension * mouseScore);
+
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0 );
 
     v_position = newPosition;

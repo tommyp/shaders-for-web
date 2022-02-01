@@ -39,6 +39,8 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
 
 camera.position.z -= 2;
 
@@ -67,6 +69,10 @@ cloths.forEach((cloth, index) => {
   cloth.uniforms = {
     image: { value: loader.load(`./assets/${cloth.src}`) },
     time: { value: clock.getElapsedTime() },
+    mouse: { value: mouse },
+    touchUv: { value: new THREE.Vector2(0.5, 0.5) },
+    touchStrength: { value: 0.0 },
+    touchStrengthAim: { value: 0.0 },
   };
 
   const dpi = 100;
@@ -82,6 +88,8 @@ cloths.forEach((cloth, index) => {
   group.rotation.set(0, index * arc, 0);
 
   shape.position.set(0, 0, -10);
+
+  cloth.shape = shape;
 
   group.add(shape);
   scene.add(group);
@@ -108,15 +116,35 @@ const update = function () {
 const animate = () => {
   const diffY = (aimRotationY - currentRotationY) * 0.025;
   currentRotationY += diffY;
-  camera.rotation.y = currentRotationY;
+  camera.rotation.set(0, currentRotationY, 0);
+
+  raycaster.setFromCamera(mouse, camera);
 
   cloths.forEach((cloth) => {
     cloth.uniforms.time = { value: clock.getElapsedTime() };
+    cloth.uniforms.mouse = { value: mouse };
+
+    const intersects = raycaster.intersectObject(cloth.shape);
+
+    if (intersects.length > 0) {
+      cloth.uniforms.touchUv = { value: intersects[0].uv };
+      cloth.uniforms.touchStrengthAim = { value: 1.0 };
+    } else {
+      cloth.uniforms.touchStrengthAim = { value: 0.0 };
+    }
+
+    const currentStrength = cloth.uniforms.touchStrength.value;
+    const aimStrength = cloth.uniforms.touchStrengthAim.value;
+    const diffStrength = (aimStrength - currentStrength) * 0.025;
+
+    cloth.uniforms.touchStrength = { value: currentStrength + diffStrength };
   });
 
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 };
+
+// interactions
 animate();
 update();
 
@@ -131,3 +159,13 @@ nextTag.addEventListener('click', (e) => {
   next();
   update();
 });
+
+function onMouseMove(event) {
+  // calculate mouse position in normalized device coordinates
+  // (-1 to +1) for both components
+
+  mouse.x = (event.clientX / section.clientWidth) * 2 - 1;
+  mouse.y = -(event.clientY / section.clientHeight) * 2 + 1;
+}
+
+window.addEventListener('mousemove', onMouseMove);

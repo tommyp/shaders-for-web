@@ -6,6 +6,8 @@ const frag = `
 
   uniform sampler2D image;
   uniform float time;
+  uniform vec2 mouse;
+  uniform vec2 touchUv;
 
   ${includes}
 
@@ -47,6 +49,8 @@ const frag = `
 
     vec3 rgb = addLight(l) * objectColor.rgb;
     vec4 finalColor = vec4(rgb, 1.0);
+
+    
     
     gl_FragColor = finalColor;
   }

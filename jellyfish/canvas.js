@@ -49,6 +49,7 @@ const material = new THREE.ShaderMaterial({
   uniforms: uniforms,
   fragmentShader: frag,
   vertexShader: vert,
+  // wireframe: true,
 });
 const shape = new THREE.Mesh(geometry, material);
 scene.add(shape);
