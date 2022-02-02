@@ -22,7 +22,7 @@ const uniforms = {
   },
 };
 
-const dpi = 50;
+const dpi = 100;
 const geometry = new THREE.PlaneGeometry(5, 3, dpi, dpi * 0.6);
 const material = new THREE.ShaderMaterial({
   fragmentShader: frag,

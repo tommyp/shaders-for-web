@@ -1,6 +1,7 @@
 const vert = `
   varying vec3 v_position;
   varying vec2 v_uv;
+  varying vec3 v_normal;
   
   uniform float time;
 
@@ -16,7 +17,7 @@ const vert = `
 
     vec3 newPosition = position;
     
-    newPosition.z += mix(-1.5, 1.5, fbm(wind)) * uv.x;
+    newPosition.z += mix(-1.5, 1.5, fbm(wind)) * uv.x * 0.5;
 
     newPosition *= rotation3dX(0.1 * sin(time));
     newPosition *= rotation3dY(0.05 * cos(time));
@@ -26,5 +27,6 @@ const vert = `
 
     v_uv = uv;
     v_position = newPosition;
+    v_normal = normal;
   }
 `;
